@@ -13,8 +13,8 @@ function initializeGridStack() {
   gridInstance = GridStack.init({
     container: '#floorCanvas',
     float: true,
-    disableDrag: false,
-    disableResize: false,
+    disableDrag: true,  // Start disabled, enable in edit mode
+    disableResize: true,
     cellHeight: 'auto',
     minW: 3,
     minH: 3,
@@ -30,14 +30,6 @@ function initializeGridStack() {
   gridInstance.on('change', function(event, items) {
     handleGridChange(items);
   });
-
-  gridInstance.on('added', function(event, items) {
-    saveAllWidgetPositions();
-  });
-
-  gridInstance.on('removed', function(event, items) {
-    saveAllWidgetPositions();
-  });
 }
 
 function loadWidgetPositions() {
@@ -45,7 +37,6 @@ function loadWidgetPositions() {
 
   const stations = document.querySelectorAll('.station[data-station-id]');
   stations.forEach((stationEl) => {
-    const stationId = stationEl.getAttribute('data-station-id');
     const gsX = parseInt(stationEl.getAttribute('data-gs-x') || '0', 10);
     const gsY = parseInt(stationEl.getAttribute('data-gs-y') || '0', 10);
     const gsW = parseInt(stationEl.getAttribute('data-gs-w') || '3', 10);
@@ -159,15 +150,16 @@ function maximizeWidget(stationId) {
   if (!stationEl) return;
 
   const isMaximized = stationEl.classList.toggle('widget-maximized');
+  const node = gridInstance.getGridItem(stationEl);
 
   if (isMaximized) {
     // Store original position
-    stationEl.dataset.originalX = gridInstance.getGridItem(stationEl).x;
-    stationEl.dataset.originalY = gridInstance.getGridItem(stationEl).y;
-    stationEl.dataset.originalW = gridInstance.getGridItem(stationEl).w;
-    stationEl.dataset.originalH = gridInstance.getGridItem(stationEl).h;
+    stationEl.dataset.originalX = node.x;
+    stationEl.dataset.originalY = node.y;
+    stationEl.dataset.originalW = node.w;
+    stationEl.dataset.originalH = node.h;
 
-    // Maximize
+    // Maximize to full grid
     gridInstance.update(stationEl, 0, 0, 12, 12);
   } else {
     // Restore original position

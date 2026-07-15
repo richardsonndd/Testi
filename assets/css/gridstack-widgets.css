@@ -1,11 +1,24 @@
 /* --- GridStack Widget Styling --- */
 
-/* Widget container grid layout */
-.floor-canvas {
+/* Grid container */
+.floor-canvas.grid-stack {
   display: grid;
   grid-auto-flow: dense;
   grid-auto-rows: minmax(120px, auto);
   padding: 12px;
+  position: relative;
+  background: radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.12), transparent 18%),
+              radial-gradient(circle at 80% 15%, rgba(59, 130, 246, 0.1), transparent 18%),
+              linear-gradient(180deg, rgba(7, 18, 39, 0.96), rgba(10, 20, 44, 0.98));
+  border: 2px solid rgba(59, 130, 246, 0.22);
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 18px 30px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floor-canvas.grid-stack.edit-mode {
+  border-color: #38bdf8;
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.28), 0 18px 30px rgba(0, 0, 0, 0.28);
 }
 
 /* Station as resizable widget */
@@ -149,22 +162,6 @@
   background: rgba(245, 158, 11, 0.2);
 }
 
-/* GridStack specific overrides */
-.grid-stack {
-  background: radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.12), transparent 18%),
-              radial-gradient(circle at 80% 15%, rgba(59, 130, 246, 0.1), transparent 18%),
-              linear-gradient(180deg, rgba(7, 18, 39, 0.96), rgba(10, 20, 44, 0.98));
-  border: 2px solid rgba(59, 130, 246, 0.22);
-  border-radius: 18px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 18px 30px rgba(0, 0, 0, 0.25);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.grid-stack.edit-mode {
-  border-color: #38bdf8;
-  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.28), 0 18px 30px rgba(0, 0, 0, 0.28);
-}
-
 /* Dragging state */
 .station.ui-draggable-dragging {
   opacity: 0.85;
@@ -189,7 +186,7 @@
 }
 
 @media (max-width: 768px) {
-  .floor-canvas {
+  .floor-canvas.grid-stack {
     padding: 8px;
   }
 
@@ -211,16 +208,4 @@
     font-size: 10px;
     padding: 3px 6px;
   }
-}
-
-/* Empty hint adjustment for grid layout */
-.floor-canvas.grid-stack:empty::before {
-  content: 'No stations in this zone yet';
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #94a3b8;
-  font-size: 14px;
 }

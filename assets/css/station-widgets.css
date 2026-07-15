@@ -1,0 +1,341 @@
+/**
+ * Station Widgets CSS
+ * Professional resizable widget design for gaming stations
+ */
+
+/* Grid Container */
+.grid-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 250px;
+  gap: 12px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  min-height: 400px;
+}
+
+.grid-stack.edit-mode {
+  background: #f0f8ff;
+  border: 2px dashed #4CAF50;
+}
+
+/* Widget Base */
+.grid-stack-item {
+  position: relative;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: grab;
+}
+
+.grid-stack-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-color: #d0d0d0;
+}
+
+.grid-stack-item.ui-draggable-dragging,
+.grid-stack-item.ui-resizable-resizing,
+.grid-stack-item.gs-w-changing {
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+  cursor: grabbing;
+}
+
+/* Station Widget Container */
+.station-widget {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.station-widget.status-free {
+  border-left: 4px solid #4CAF50;
+  background: linear-gradient(135deg, #f9fff9 0%, #ffffff 100%);
+}
+
+.station-widget.status-busy {
+  border-left: 4px solid #FF6B6B;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+}
+
+.station-widget.status-paused {
+  border-left: 4px solid #FFA500;
+  background: linear-gradient(135deg, #fffbf0 0%, #ffffff 100%);
+}
+
+/* Widget Header */
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.widget-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.widget-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.widget-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.widget-status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.status-free .widget-status-badge {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.status-busy .widget-status-badge {
+  background-color: rgba(255, 107, 107, 0.1);
+  color: #c62828;
+  animation: pulse-red 2s infinite;
+}
+
+.status-paused .widget-status-badge {
+  background-color: rgba(255, 165, 0, 0.1);
+  color: #e65100;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Widget Content */
+.widget-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-y: auto;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #666;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+
+.info-value {
+  color: #1a1a1a;
+  font-weight: 500;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.live-timer {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: #FF6B6B;
+  font-size: 13px;
+}
+
+.budget-display {
+  font-weight: 700;
+  color: #4CAF50;
+  font-size: 13px;
+}
+
+/* Widget Actions */
+.widget-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+.widget-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.widget-btn:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.widget-btn:active {
+  transform: translateY(0);
+}
+
+.widget-btn-play { background-color: #c8e6c9; }
+.widget-btn-play:hover { background-color: #a5d6a7; }
+
+.widget-btn-pause { background-color: #ffe0b2; }
+.widget-btn-pause:hover { background-color: #ffcc80; }
+
+.widget-btn-stop { background-color: #ffcccc; }
+.widget-btn-stop:hover { background-color: #ffb3b3; }
+
+.widget-btn-food { background-color: #fff9c4; }
+.widget-btn-food:hover { background-color: #fff59d; }
+
+.widget-btn-bill { background-color: #b3e5fc; }
+.widget-btn-bill:hover { background-color: #81d4fa; }
+
+/* Resize Handle */
+.widget-resize-handle {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 16px;
+  height: 16px;
+  cursor: se-resize;
+  font-size: 14px;
+  color: #999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-stack-item:hover .widget-resize-handle,
+.grid-stack.edit-mode .widget-resize-handle {
+  opacity: 0.7;
+}
+
+.widget-resize-handle:hover {
+  opacity: 1;
+  color: #4CAF50;
+}
+
+/* Edit Mode Enhancements */
+.grid-stack.edit-mode .grid-stack-item {
+  border: 2px dashed #4CAF50;
+  background: #f9fff9;
+}
+
+.grid-stack.edit-mode .grid-stack-item:hover {
+  border-color: #2e7d32;
+  background: #ffffcc;
+}
+
+/* Scrollbar Styling */
+.widget-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.widget-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.widget-content::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 2px;
+}
+
+.widget-content::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .grid-stack {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-auto-rows: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-stack {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .station-widget {
+    padding: 8px;
+  }
+  
+  .widget-content {
+    font-size: 11px;
+  }
+  
+  .widget-btn {
+    font-size: 10px;
+    padding: 4px 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-stack {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  
+  .widget-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .widget-status-badge {
+    align-self: flex-start;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}

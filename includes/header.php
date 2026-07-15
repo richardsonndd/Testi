@@ -14,6 +14,11 @@ $siteName = $siteSettings['site_name'] ?? 'PS Gaming Center';
 ?>
 <title><?= isset($pageTitle) ? h($pageTitle) . ' — ' : '' ?><?= h($siteName) ?></title>
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- GridStack CSS for widget layouts -->
+<?php if ($page === 'dashboard'): ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/8.6.2/gridstack.min.css" integrity="sha512-3wjP1rqZC+XNZEpjSyp6Bz7C+Q/OANR3BdH7VYK2aEwmOm8zQoGT/JQ6p+A/j6hx+k7qJPqeRU0lAHJJpxpw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="assets/css/gridstack-widgets.css">
+<?php endif; ?>
 </head>
 <body>
 <?php if ($user): ?>
@@ -55,3 +60,4 @@ $siteName = $siteSettings['site_name'] ?? 'PS Gaming Center';
     </header>
 <?php endif; ?>
 <main class="container">
+

@@ -1,0 +1,23 @@
+Next change I’m going to make
+Instead of simple draggable stations, I’ll convert them into resizable widgets.
+Each station will become:
+┌───────────────────────────────┐
+│ 🎮 PS5 #1        🟢 FREE       │
+├───────────────────────────────┤
+│ 👤 Customer: Ahmed            │
+│ ⏱ 01:24:15                    │
+│ 💶 €4.50                       │
+│ 🎮 FC26                        │
+├───────────────────────────────┤
+│ ▶ Start  ⏸ Pause  ■ Stop      │
+│ 🍔 Order   🧾 Bill             │
+└───────────────────────────────┘
+                 ◢ resize
+I’ll replace the current drag code with:
+* GridStack.js
+* Drag & Drop
+* Resize handles
+* Grid snapping
+* Auto save width & height
+* Double click maximize
+* Responsive layout
